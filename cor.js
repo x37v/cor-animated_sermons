@@ -91,6 +91,16 @@ function pulseText(group)
 	});
 }
 
+//textarray is actually just one long string
+//break apart elements in array with pipes, optional arguments after pipe
+//|BR gives a line break before text, line breaks also insert a delay
+//|n= [0,1,2,3] puts the following text into that text group, default is zero,
+//so |1= makes the following text flash a lot.
+//^n anywhere, ie ^500 adds a delay of n milliseconds
+//|XXX pauses for pauses typed_page_timeout and then clears the page and starts
+//fresh
+//
+//all content is appended to the html element specified by append_element
 function typetext(append_element, textarray) {
 	var shit = textarray.split("|");
 	var f = function(index) {

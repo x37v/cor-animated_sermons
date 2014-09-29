@@ -33,6 +33,8 @@ body#sermon {
 }
 
 #sermonframe {
+	font-size: 28px;
+  line-height: 40px;
   text-align: left;
   padding: 80px 80px 40px 80px;
 }

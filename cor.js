@@ -21,18 +21,15 @@ var text_attrs = [
 		interval: 200,
 		fade: 150,
 		colors: ['rgb(255, 0, 0)', 'rgb(255, 255, 255)']
-	},
-  {
-		index:0,
-		interval: 300,
-		fade: 150,
-		colors: ['rgb(255, 0, 255)', 'rgb(0, 0, 255)', 'rgb(0, 255, 0)', 'rgb(255, 255, 0)']
-	},
+	}
 ];
 
 function pageInit(){
 	window.setInterval(rotateBorderPallette, 200);
 	window.setInterval(rotateSlogans, 5000);
+}
+
+function animatedSermonInit() {
 	jQuery.each(text_attrs, function(index, value) {
 		window.setInterval(function(){ pulseText(index); }, value.interval);
 	});
@@ -101,13 +98,13 @@ function pulseText(group)
 //fresh
 //
 //all content is appended to the html element specified by append_element
-function typetext(append_element, textarray) {
+function typetext(append_element, textarray, donecallback) {
 	var shit = textarray.split("|");
 	var f = function(index) {
 		if (index < shit.length)
 			type(append_element, shit[index], function() { f(index + 1); } );
 		else {
-			type(append_element, "XXX", function() { f(0); } );
+			donecallback();
 		}
 	};
 	f(0);
@@ -149,4 +146,21 @@ function type(append_element, text, donefunc) {
 			callback: donefunc
 		});
 	}
+}
+
+//slop overflow:
+//http://stackoverflow.com/questions/19491336/get-url-parameter-jquery
+function getUrlParameter(sParam)
+{
+	var sPageURL = window.location.search.substring(1);
+	var sURLVariables = sPageURL.split('&');
+	for (var i = 0; i < sURLVariables.length; i++) 
+	{
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam) 
+		{
+			return sParameterName[1];
+		}
+	}
+	return null;
 }

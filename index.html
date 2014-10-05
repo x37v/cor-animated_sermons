@@ -94,15 +94,27 @@
 									by sitting in a corner, ^500motionless, ^500the Mutant Savior might be able to more efficiently pick off swarms of |1=Robotrons.\
 									|BRThese however, are the exceptions. Use the ninth position |1=sparingly; |use it |1=wisely.";
 
-	  var data = intro + "|XXX|" + what + "|XXX|" + how + "|XXX|" + error + "|XXX|" + futility + "|XXX|" + ninth;
+	  var data = [intro, what, how, error, futility, ninth];
 
-		$(function(){
-				typetext(".fillme", data);
-     });
+		var textfunc = function() {
+				var index = getUrlParameter("sermon");
+				if (index == null) {
+				  index = 0;
+				} else {
+					index = parseInt(index);
+					if (index >= data.length)
+						index = 0;
+				} 
+				var cb = function() {
+					window.location.href = window.location.href.replace(/[\?#].*|$/, "?sermon=" + String(index + 1));
+					location.reload();
+				}
+				typetext(".fillme", data[index] + "|XXX", cb);
+     };
 </script>
 	</head>
 
-	<body id="sermon" onLoad='pageInit()'>
+	<body id="sermon" onLoad='animatedSermonInit(); textfunc();'>
 		<div id="sermonframe">
 			<span class="fillme"></span>
 		</p>

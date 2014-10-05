@@ -106,8 +106,8 @@
 						index = 0;
 				} 
 				var cb = function() {
-					window.location.href = window.location.href.replace(/[\?#].*|$/, "?sermon=" + String(index + 1));
-					location.reload();
+					var href = window.location.href.replace(/[\?#].*|$/, "?sermon=" + String(index + 1));
+					window.location.href = href;
 				}
 				typetext(".fillme", data[index] + "|XXX", cb);
      };

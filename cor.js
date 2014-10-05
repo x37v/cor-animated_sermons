@@ -78,14 +78,8 @@ function pulseText(group)
 	var fade = text_attrs[group].fade;
 	var cindex = text_attrs[group].index;
 	text_attrs[group].index = (cindex + 1) % colors.length;
-
-	$( ".rt" ).each(function(index, value) {
-		var g = $(this).data('group');
-		if (g == group) {
-			var c = colors[cindex];
-			$(this).animate({color:c}, fade);
-		}
-	});
+	var c = colors[cindex];
+	$(".rt" + String(group)).animate({color:c}, fade);
 }
 
 //textarray is actually just one long string
@@ -136,8 +130,8 @@ function type(append_element, text, donefunc) {
 		if (br && !/\s*\^/.exec(text)) {
 			text = "^" + paragrah_delay + text;
 		}
-		$(element).addClass("rt");
-		$(element).data("group", group);
+		$(element).addClass("rt" + String(group));
+		//$(element).data("group", group);
 		$(append_element).append(element);
 		$(element).typed({
 			strings: [text],

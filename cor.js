@@ -36,7 +36,8 @@ function animatedSermonInit() {
     window.setInterval(function(){ pulseText(index); }, value.interval);
   });
   window.setInterval(function() {
-    $('html, body').animate({scrollTop:$(document).height()}, 'fast');
+		var objDiv = $('#outterframe');
+    objDiv.animate({scrollTop:$('#sermonframe').height()}, 'fast');
   }, 500);
 }
 
